@@ -1,0 +1,5 @@
+/* Local fallback for Inter font */
+@font-face {
+  font-family: 'Inter';
+  src: local('Arial');
+}
