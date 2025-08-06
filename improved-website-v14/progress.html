@@ -113,14 +113,8 @@
     <!-- Footer -->
     {% include "partials/footer.html" %}
 
-    <!-- Scripts for charts and mobile menu toggle -->
+    <!-- Scripts for charts -->
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-        
         // Data for the weekly activity chart
         const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
         const weeklyChart = new Chart(weeklyCtx, {

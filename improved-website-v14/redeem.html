@@ -112,12 +112,8 @@
     <!-- Footer -->
     {% include "partials/footer.html" %}
 
-    <!-- Scripts for mobile menu and points handling -->
+    <!-- Scripts for points handling -->
     <script>
-        document.getElementById('mobile-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
         // Load points from localStorage or set default
         let points = parseInt(localStorage.getItem('userPoints') || '0');
         document.getElementById('points-balance').textContent = points;

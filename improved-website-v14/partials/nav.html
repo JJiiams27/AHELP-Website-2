@@ -16,13 +16,13 @@
             <a href="redeem.html" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Redeem</a>
             <a href="login.html" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Login</a>
         </div>
-        <button id="mobile-btn" class="md:hidden text-gray-700 focus:outline-none">
+        <button id="mobile-btn" class="md:hidden text-gray-700 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4" aria-hidden="true">
         <a href="index.html" class="block py-2 text-gray-700 hover:text-purple-600">Home</a>
         <a href="health-assessment.html" class="block py-2 text-gray-700 hover:text-purple-600">Assessment</a>
         <a href="dashboard.html" class="block py-2 text-gray-700 hover:text-purple-600">Dashboard</a>
@@ -36,3 +36,4 @@
         <a href="login.html" class="block py-2 text-gray-700 hover:text-purple-600">Login</a>
     </div>
 </nav>
+<script src="js/mobile-nav.js"></script>
