@@ -42,12 +42,19 @@
     </style>
     <!-- Apply dark mode before page renders -->
     <script>
-        try {
-            if (localStorage.getItem('darkMode') === 'true') {
-                document.documentElement.classList.add('dark-mode');
-                document.body?.classList.add('dark-mode');
-            }
-        } catch (e) {}
+        (function() {
+            try {
+                if (localStorage.getItem('darkMode') === 'true') {
+                    document.documentElement.classList.add('dark-mode');
+                    const applyBodyClass = () => document.body.classList.add('dark-mode');
+                    if (document.body) {
+                        applyBodyClass();
+                    } else {
+                        document.addEventListener('DOMContentLoaded', applyBodyClass);
+                    }
+                }
+            } catch (e) {}
+        })();
     </script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
