@@ -8,11 +8,41 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicDir = path.join(__dirname, '..', 'improved-website-v14');
 
-const users = new Map(); // email -> { passwordHash, firstName, lastName }
-const sessions = new Map(); // token -> email
+const dataDir = path.join(__dirname, 'data');
+const usersPath = path.join(dataDir, 'users.json');
+const sessionsPath = path.join(dataDir, 'sessions.json');
+
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+function loadJSON(file) {
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+function saveJSON(file, data) {
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+
+const users = loadJSON(usersPath); // email -> { passwordHash, firstName, lastName }
+const sessions = loadJSON(sessionsPath); // token -> email
 
 function hash(password) {
-  return crypto.createHash('sha256').update(password).digest('hex');
+  const salt = crypto.randomBytes(16).toString('hex');
+  const derivedKey = crypto.scryptSync(password, salt, 64);
+  return `${salt}:${derivedKey.toString('hex')}`;
+}
+
+function verify(password, stored) {
+  const [salt, key] = stored.split(':');
+  const derivedKey = crypto.scryptSync(password, salt, 64).toString('hex');
+  const keyBuf = Buffer.from(key, 'hex');
+  const derivedBuf = Buffer.from(derivedKey, 'hex');
+  return crypto.timingSafeEqual(keyBuf, derivedBuf);
 }
 
 function parseBody(req) {
@@ -41,13 +71,15 @@ const server = http.createServer(async (req, res) => {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'Email and password required' }));
       }
-      if (users.has(email)) {
+      if (users[email]) {
         res.writeHead(409, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'User already exists' }));
       }
-      users.set(email, { firstName, lastName, passwordHash: hash(password) });
+      users[email] = { firstName, lastName, passwordHash: hash(password) };
+      saveJSON(usersPath, users);
       const token = crypto.randomUUID();
-      sessions.set(token, email);
+      sessions[token] = email;
+      saveJSON(sessionsPath, sessions);
       res.writeHead(200, {
         'Content-Type': 'application/json',
         'Set-Cookie': `session=${token}; HttpOnly; Path=/; SameSite=Strict`
@@ -60,13 +92,14 @@ const server = http.createServer(async (req, res) => {
   } else if (req.method === 'POST' && req.url === '/api/login') {
     try {
       const { email = '', password = '' } = await parseBody(req);
-      const user = users.get(email);
-      if (!user || user.passwordHash !== hash(password)) {
+      const user = users[email];
+      if (!user || !verify(password, user.passwordHash)) {
         res.writeHead(401, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({ error: 'Invalid credentials' }));
       }
       const token = crypto.randomUUID();
-      sessions.set(token, email);
+      sessions[token] = email;
+      saveJSON(sessionsPath, sessions);
       res.writeHead(200, {
         'Content-Type': 'application/json',
         'Set-Cookie': `session=${token}; HttpOnly; Path=/; SameSite=Strict`
