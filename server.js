@@ -23,11 +23,22 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify({ status: 'ok' }));
     });
   } else if (req.method === 'GET') {
-    const filePath = path.join(__dirname, 'improved-website-v14', req.url === '/' ? 'index.html' : req.url);
+    const filePath = path.join(
+      __dirname,
+      'improved-website-v14',
+      req.url === '/' ? 'index.html' : req.url
+    );
     fs.readFile(filePath, (err, data) => {
       if (err) {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Not found');
+        const notFoundPath = path.join(
+          __dirname,
+          'improved-website-v14',
+          '404.html'
+        );
+        fs.readFile(notFoundPath, (nfErr, nfData) => {
+          res.writeHead(404, { 'Content-Type': 'text/html' });
+          res.end(nfErr ? 'Not found' : nfData);
+        });
       } else {
         res.writeHead(200);
         res.end(data);
