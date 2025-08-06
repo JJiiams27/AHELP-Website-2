@@ -43,15 +43,6 @@
 
     {% include "partials/footer.html" %}
 
-    <script>
-        const mobileBtn = document.getElementById('mobile-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileBtn && mobileMenu) {
-            mobileBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-    </script>
     <!-- Back to Top Button -->
     <button id="back-to-top" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-purple-500 text-white shadow-lg" aria-label="Back to top">↑</button>
     <!-- Persistence & Back-to-Top Script -->
