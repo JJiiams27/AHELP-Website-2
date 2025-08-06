@@ -6,24 +6,11 @@
   <title>AHELP – Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dark-mode.css">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    .dark-mode {
-      background-color: #0f172a;
-      color: #e2e8f0;
-    }
-    .dark-mode .bg-white,
-    .dark-mode .bg-gray-50 {
-      background-color: #1e293b !important;
-      color: #e2e8f0 !important;
-    }
   </style>
-  <script>
-    if (localStorage.getItem('darkMode') === 'true') {
-      document.documentElement.classList.add('dark-mode');
-      document.body.classList.add('dark-mode');
-    }
-  </script>
+  <script src="js/dark-mode.js"></script>
 </head>
 <body class="bg-gray-50 transition-all duration-500">
   <!-- Navigation Bar -->

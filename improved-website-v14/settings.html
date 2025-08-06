@@ -5,39 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AHELP – Settings</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/dark-mode.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        /* Dark mode palette for settings page */
-        .dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-        .dark-mode .bg-white,
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100 {
-            background-color: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .bg-gradient-to-r,
-        .dark-mode .bg-gradient-to-br,
-        .dark-mode .bg-gradient-to-l {
-            background: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .text-gray-900,
-        .dark-mode .text-gray-800 {
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-500 {
-            color: #94a3b8 !important;
-        }
-        .dark-mode .border-gray-300 {
-            border-color: #475569 !important;
-        }
         html { scroll-behavior: smooth; }
     </style>
+    <script src="js/dark-mode.js"></script>
 </head>
 <body class="bg-gray-50" id="settings-body">
     <!-- Navigation -->
@@ -163,9 +137,6 @@
             if (darkModeEl) darkModeEl.checked = darkModeEnabled;
             if (deviceSyncEl) deviceSyncEl.checked = deviceSyncEnabled;
             if (stepsGoalEl) stepsGoalEl.value = stepsGoal;
-            if (darkModeEnabled) {
-                document.body.classList.add('dark-mode');
-            }
         });
 
         // Save preferences
@@ -181,7 +152,7 @@
             localStorage.setItem('settingsDeviceSync', deviceSync);
             localStorage.setItem('settingsStepsGoal', stepsGoal);
             // Apply dark mode immediately
-            document.body.classList.toggle('dark-mode', darkMode);
+            applyDarkMode();
             // Optionally show a message if device sync is enabled
             if (deviceSync) {
                 alert('Device sync enabled. Your fitness device data will be synced automatically.');
@@ -194,12 +165,6 @@
     <!-- Dark Mode Persistence & Back‑to‑Top Script -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Apply saved dark mode across pages
-        try {
-          if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-          }
-        } catch (e) {}
         const backBtn = document.getElementById('back-to-top');
         window.addEventListener('scroll', function() {
           if (window.scrollY > 200) {

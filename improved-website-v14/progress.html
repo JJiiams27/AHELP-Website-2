@@ -8,51 +8,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js for progress charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/dark-mode.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
         /* Enable smooth scroll when jumping between sections */
         html { scroll-behavior: smooth; }
-
-        /* Dark mode palette for progress page */
-        .dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-        .dark-mode .bg-white,
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100 {
-            background-color: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .bg-gradient-to-br,
-        .dark-mode .bg-gradient-to-r,
-        .dark-mode .bg-gradient-to-l {
-            background: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .text-gray-900,
-        .dark-mode .text-gray-800 {
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-500 {
-            color: #94a3b8 !important;
-        }
-        .dark-mode .border-gray-300 {
-            border-color: #475569 !important;
-        }
     </style>
-
-    <!-- Apply dark mode class early before page renders to prevent flash -->
-    <script>
-        try {
-            if (localStorage.getItem('darkMode') === 'true') {
-                document.documentElement.classList.add('dark-mode');
-                document.body.classList.add('dark-mode');
-            }
-        } catch (e) {}
-    </script>
+    <script src="js/dark-mode.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation bar -->
@@ -264,11 +227,6 @@
     <!-- Dark Mode Persistence & Back‑to‑Top Script -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        try {
-          if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-          }
-        } catch (e) {}
         const backBtn = document.getElementById('back-to-top');
         window.addEventListener('scroll', function() {
           if (window.scrollY > 200) {

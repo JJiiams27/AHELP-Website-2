@@ -6,6 +6,7 @@
     <title>AHELP - Arkansas Healthy Employee Lifestyle Program</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/dark-mode.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
@@ -180,28 +181,6 @@
             transition: stroke-dashoffset 0.5s ease-in-out;
         }
         
-        .dark-mode {
-            background: #0f172a;
-            color: #e2e8f0;
-        }
-        
-        .dark-mode .bg-white {
-            background: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-        
-        .dark-mode .text-gray-900 {
-            color: #e2e8f0 !important;
-        }
-        
-        .dark-mode .text-gray-600 {
-            color: #94a3b8 !important;
-        }
-        
-        .dark-mode .border-gray-300 {
-            border-color: #475569 !important;
-        }
-        
         .voice-command {
             animation: voicePulse 1.5s ease-in-out infinite;
         }
@@ -243,6 +222,7 @@
             100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
     </style>
+    <script src="js/dark-mode.js"></script>
 </head>
 <body class="bg-purple-100 transition-all duration-500">
     <!-- Particle Background -->
@@ -1590,16 +1570,13 @@
             }
             // Apply previously saved dark mode state
             try {
-                const savedDark = localStorage.getItem('darkMode');
-                if (savedDark === 'true') {
-                    userData.darkMode = true;
-                    document.body.classList.add('dark-mode');
-                    const iconMoon = document.getElementById('icon-moon');
-                    const iconSun  = document.getElementById('icon-sun');
-                    if (iconMoon && iconSun) {
-                        iconMoon.classList.add('hidden');
-                        iconSun.classList.remove('hidden');
-                    }
+                const savedDark = localStorage.getItem('darkMode') === 'true';
+                userData.darkMode = savedDark;
+                const iconMoon = document.getElementById('icon-moon');
+                const iconSun  = document.getElementById('icon-sun');
+                if (savedDark && iconMoon && iconSun) {
+                    iconMoon.classList.add('hidden');
+                    iconSun.classList.remove('hidden');
                 }
             } catch (e) {}
             // Immediately update the dashboard stats and visualisations when the page loads
@@ -1715,15 +1692,8 @@
 
         // Dark mode toggle
         document.getElementById('dark-mode-toggle').addEventListener('click', () => {
-            // Flip the darkMode flag and apply/remove the dark mode class on the body
-            userData.darkMode = !userData.darkMode;
-            document.body.classList.toggle('dark-mode', userData.darkMode);
-            // Persist the dark mode preference so other pages stay in sync
-            try {
-                localStorage.setItem('darkMode', userData.darkMode);
-            } catch (e) {}
-
-            // Toggle visibility of the moon and sun icons; in light mode show the moon (meaning you can switch to dark)
+            toggleDarkMode();
+            userData.darkMode = localStorage.getItem('darkMode') === 'true';
             const iconMoon = document.getElementById('icon-moon');
             const iconSun  = document.getElementById('icon-sun');
             if (userData.darkMode) {
@@ -1733,8 +1703,6 @@
                 iconMoon.classList.remove('hidden');
                 iconSun.classList.add('hidden');
             }
-
-            // Show a toast letting the user know which mode is active
             showEnhancedNotification(userData.darkMode ? 'Dark mode activated!' : 'Light mode activated!', 'info');
         });
 

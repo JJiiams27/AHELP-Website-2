@@ -8,46 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dark-mode.css">
     <style>
         body { font-family: 'Inter', sans-serif; }
-
-        /* Dark mode palette for login page. This mirrors the dashboard dark scheme for consistency. */
-        .dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-        .dark-mode .bg-white,
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100 {
-            background-color: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .bg-gradient-to-br,
-        .dark-mode .bg-gradient-to-r,
-        .dark-mode .bg-gradient-to-l {
-            background: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-
-        /* When the same element holds both dark-mode and gradient classes (e.g. body), override as well */
-        .dark-mode.bg-gradient-to-br,
-        .dark-mode.bg-gradient-to-r,
-        .dark-mode.bg-gradient-to-l {
-            background: #1e293b !important;
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .text-gray-900,
-        .dark-mode .text-gray-800 {
-            color: #e2e8f0 !important;
-        }
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-500 {
-            color: #94a3b8 !important;
-        }
-        .dark-mode .border-gray-300 {
-            border-color: #475569 !important;
-        }
     </style>
+    <script src="js/dark-mode.js"></script>
 </head>
 <body class="bg-gradient-to-r from-purple-200 to-orange-200">
     <!-- Top navigation bar with logo and back link -->
@@ -195,12 +160,6 @@
     <!-- Persistence & Back‑to‑Top Script -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Apply saved dark mode across pages
-        try {
-          if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-          }
-        } catch (e) {}
         const backBtn = document.getElementById('back-to-top');
         window.addEventListener('scroll', function() {
           if (window.scrollY > 200) {
