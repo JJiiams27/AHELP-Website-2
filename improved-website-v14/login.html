@@ -51,16 +51,7 @@
 </head>
 <body class="bg-gradient-to-r from-purple-200 to-orange-200">
     <!-- Top navigation bar with logo and back link -->
-    <nav class="flex items-center justify-between px-6 py-4">
-        <div class="flex items-center space-x-3">
-            <a href="index.html" class="flex items-center space-x-3">
-                <img src="Help (6).png" alt="AHELP logo" class="h-28 w-auto">
-            </a>
-        </div>
-        <div>
-            <a href="index.html" class="text-gray-600 hover:text-purple-600 text-sm">← Back to Home</a>
-        </div>
-    </nav>
+    {% include "partials/nav.html" %}
     
     <!-- Login / Sign Up Card -->
     <div class="flex-1 flex items-center justify-center px-4 pb-12">
@@ -214,5 +205,6 @@
         });
       });
     </script>
+{% include "partials/footer.html" %}
 </body>
 </html>

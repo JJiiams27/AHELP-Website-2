@@ -27,17 +27,7 @@
 </head>
 <body class="bg-gray-50 transition-all duration-500">
   <!-- Navigation Bar -->
-  <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-md dark-mode:bg-gray-800">
-    <div class="flex items-center space-x-3">
-      <a href="index.html" class="flex items-center space-x-3">
-        <img src="Help (6).png" alt="AHELP Logo" class="h-28 w-auto" />
-      </a>
-    </div>
-    <div class="space-x-4 text-sm">
-      <a href="login.html" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Login</a>
-      <a href="signup.html" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Sign Up</a>
-    </div>
-  </nav>
+  {% include "partials/nav.html" %}
 
   <!-- Hero Section -->
   <section class="text-center px-6 py-16 bg-gradient-to-br from-purple-500 to-orange-400 text-white">
@@ -113,8 +103,6 @@
   </section>
 
   <!-- Footer -->
-  <footer class="text-center py-8 text-sm text-gray-500 dark-mode:text-gray-400">
-    &copy; 2025 AHELP – Arkansas Healthy Employee Lifestyle Program
-  </footer>
+  {% include "partials/footer.html" %}
 </body>
 </html>

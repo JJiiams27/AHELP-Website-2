@@ -50,17 +50,7 @@
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
     <!-- Navigation bar -->
-    <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-md">
-        <div class="flex items-center space-x-2">
-            <a href="index.html" class="flex items-center space-x-2">
-                <img src="Help (6).png" alt="AHELP logo" class="h-28 w-auto">
-                <span class="text-xl font-extrabold bg-gradient-to-r from-purple-500 to-orange-400 bg-clip-text text-transparent">AHELP</span>
-            </a>
-        </div>
-        <div>
-            <a href="index.html" class="text-gray-600 hover:text-purple-600 text-sm">← Back to Home</a>
-        </div>
-    </nav>
+    {% include "partials/nav.html" %}
 
     <!-- Main content -->
     <main class="flex-1 flex items-center justify-center px-4 py-12">
@@ -123,5 +113,6 @@
             }
         });
     </script>
+{% include "partials/footer.html" %}
 </body>
 </html>

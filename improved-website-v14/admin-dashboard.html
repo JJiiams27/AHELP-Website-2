@@ -52,26 +52,7 @@
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
     <!-- Navigation bar -->
-    <nav class="bg-white dark-mode:bg-gray-800 shadow-md sticky top-0 z-50 py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <img src="Help (6).png" alt="AHELP logo" class="h-28 w-auto">
-                <span class="text-2xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">AHELP Admin</span>
-            </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <!-- Each nav link uses a data-tab attribute for tab switching instead of page anchors -->
-                <a href="#analytics" data-tab="analytics" class="admin-nav-link text-purple-600 font-semibold">Analytics</a>
-                <a href="#users" data-tab="users" class="admin-nav-link text-gray-700 dark-mode:text-gray-300 hover:text-purple-600 transition-all duration-300">Users</a>
-                <a href="#alerts" data-tab="alerts" class="admin-nav-link text-gray-700 dark-mode:text-gray-300 hover:text-purple-600 transition-all duration-300">Alerts</a>
-                <a href="#redemptions" data-tab="redemptions" class="admin-nav-link text-gray-700 dark-mode:text-gray-300 hover:text-purple-600 transition-all duration-300">Redemptions</a>
-                <a href="#hra" data-tab="hra" class="admin-nav-link text-gray-700 dark-mode:text-gray-300 hover:text-purple-600 transition-all duration-300">HRA Summary</a>
-                <a href="#reports" data-tab="reports" class="admin-nav-link text-gray-700 dark-mode:text-gray-300 hover:text-purple-600 transition-all duration-300">Reports</a>
-                <!-- Admin management tab only visible to super admins -->
-                <a href="#admin-management" id="admin-management-link" data-tab="admin-management" class="admin-nav-link text-gray-700 dark-mode:text-gray-300 hover:text-purple-600 transition-all duration-300 hidden">Admin Management</a>
-            </div>
-            <button id="admin-logout" class="bg-gradient-to-r from-purple-500 to-orange-400 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-orange-500 transition">Logout</button>
-        </div>
-    </nav>
+    {% include "partials/nav.html" %}
 
     <!-- Main content -->
     <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
@@ -910,5 +891,6 @@
             showTab('analytics');
         });
     </script>
+{% include "partials/footer.html" %}
 </body>
 </html>
