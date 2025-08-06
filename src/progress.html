@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AHELP – Progress</title>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js for progress charts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
         /* Enable smooth scroll when jumping between sections */
         html { scroll-behavior: smooth; }
@@ -55,6 +52,7 @@
     </script>
 </head>
 <body class="bg-gray-50">
+  <script type="module" src="/main.js"></script>
     <!-- Navigation bar -->
     <nav class="bg-white shadow-md sticky top-0 z-50 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -174,7 +172,7 @@
     </footer>
 
     <!-- Scripts for charts and mobile menu toggle -->
-    <script>
+    <script type="module">
         // Mobile menu toggle
         document.getElementById('mobile-menu-button').addEventListener('click', () => {
             const menu = document.getElementById('mobile-menu');
@@ -262,7 +260,7 @@
     <!-- Back to Top Button -->
     <button id="back-to-top" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-purple-500 text-white shadow-lg" aria-label="Back to top">↑</button>
     <!-- Dark Mode Persistence & Back‑to‑Top Script -->
-    <script>
+    <script type="module">
       document.addEventListener('DOMContentLoaded', function() {
         try {
           if (localStorage.getItem('darkMode') === 'true') {

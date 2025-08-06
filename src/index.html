@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AHELP – Empower Your Wellness Journey</title>
     <!-- Tailwind CSS for rapid, utility‑first styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js for interactive data visualisation on the home page -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Google Font: Inter provides a clean, modern typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
 
@@ -55,6 +52,7 @@
     </script>
 </head>
 <body class="text-gray-700 antialiased">
+  <script type="module" src="/main.js"></script>
     <!-- Navigation Bar -->
     <nav class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
         <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
@@ -218,7 +216,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script>
+    <script type="module">
         // Mobile navigation toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -257,7 +255,7 @@
     <!-- Back to Top Button -->
     <button id="back-to-top" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-purple-500 text-white shadow-lg" aria-label="Back to top">↑</button>
     <!-- Persistence & Back-to-Top Script -->
-    <script>
+    <script type="module">
       document.addEventListener('DOMContentLoaded', function() {
         // Apply saved dark mode from localStorage if enabled
         try {

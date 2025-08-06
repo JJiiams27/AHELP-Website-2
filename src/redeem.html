@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AHELP – Redeem Rewards</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
         html { scroll-behavior: smooth; }
 
@@ -62,6 +60,7 @@
     </script>
 </head>
 <body class="bg-gray-50">
+  <script type="module" src="/main.js"></script>
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50 py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -171,7 +170,7 @@
     </footer>
 
     <!-- Scripts for mobile menu and points handling -->
-    <script>
+    <script type="module">
         document.getElementById('mobile-btn').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
@@ -216,7 +215,7 @@
     <!-- Back to Top Button -->
     <button id="back-to-top" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-purple-500 text-white shadow-lg" aria-label="Back to top">↑</button>
     <!-- Dark Mode Persistence & Back‑to‑Top Script -->
-    <script>
+    <script type="module">
       document.addEventListener('DOMContentLoaded', function() {
         try {
           if (localStorage.getItem('darkMode') === 'true') {

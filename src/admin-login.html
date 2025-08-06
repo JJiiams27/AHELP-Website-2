@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AHELP – Admin Login</title>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
         /* Dark mode palette for admin pages */
         .dark-mode {
@@ -49,6 +47,7 @@
     </script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
+  <script type="module" src="/main.js"></script>
     <!-- Navigation bar -->
     <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-md">
         <div class="flex items-center space-x-2">
@@ -92,7 +91,7 @@
     </main>
 
     <!-- Scripts -->
-    <script>
+    <script type="module">
         // Handle admin login using stored admin accounts
         document.getElementById('admin-login-form').addEventListener('submit', e => {
             e.preventDefault();
