@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicDir = path.join(__dirname, '..', 'improved-website-v14');
+const publicDir = path.join(__dirname, '..', 'dist');
 
 const users = new Map(); // email -> { passwordHash, firstName, lastName }
 const sessions = new Map(); // token -> email
