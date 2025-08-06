@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found – AHELP</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com" integrity="sha384-2gSwl3FZlQbivjBI2Io0FXHWXPiyZoeQjn+xYBxbQqg9oZUTB08Yn20aKh8TlHz8" crossorigin="anonymous" onerror="this.onerror=null;this.src='libs/tailwind-fallback.js';"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" integrity="sha384-C8GPdW6OpD6mJ/f4SIpMpsZvlKOo6wVaX/0ZT1jUrF1UhxXox2BP7FKd9CtuU+6d" crossorigin="anonymous" onerror="this.onerror=null;this.href='libs/inter-fallback.css';">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .dark-mode { background-color: #0f172a; color: #e2e8f0; }
+        .dark-mode .bg-white,
+        .dark-mode .bg-gray-50,
+        .dark-mode .bg-gray-100 { background-color: #1e293b !important; color: #e2e8f0 !important; }
+    </style>
+    <!-- Apply dark mode before rendering -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('darkMode') === 'true') {
+                    document.documentElement.classList.add('dark-mode');
+                    const applyBodyClass = () => document.body.classList.add('dark-mode');
+                    if (document.body) {
+                        applyBodyClass();
+                    } else {
+                        document.addEventListener('DOMContentLoaded', applyBodyClass);
+                    }
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body class="text-gray-700 antialiased">
+    {% include "partials/nav.html" %}
+
+    <main class="min-h-screen flex flex-col items-center justify-center text-center px-4">
+        <h1 class="text-4xl font-extrabold mb-4 text-gray-800">Page Not Found</h1>
+        <p class="text-gray-600 mb-6">Sorry, the page you're looking for doesn't exist.</p>
+        <a href="index.html" class="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-orange-400 text-white font-medium hover:from-purple-600 hover:to-orange-500 transition">Return Home</a>
+    </main>
+
+    {% include "partials/footer.html" %}
+
+    <script>
+        const mobileBtn = document.getElementById('mobile-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="hidden fixed bottom-6 right-6 p-3 rounded-full bg-purple-500 text-white shadow-lg" aria-label="Back to top">↑</button>
+    <!-- Persistence & Back-to-Top Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        try {
+          if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+          }
+        } catch (e) {}
+        const backBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 200) {
+            backBtn.classList.remove('hidden');
+          } else {
+            backBtn.classList.add('hidden');
+          }
+        });
+        backBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    </script>
+</body>
+</html>
