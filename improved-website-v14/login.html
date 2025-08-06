@@ -78,12 +78,12 @@
             <!-- Login Form -->
             <form id="login-form" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="you@example.com">
+                    <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input id="login-email" type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="you@example.com">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="••••••••">
+                    <label for="login-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input id="login-password" type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="••••••••">
                 </div>
                 <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-orange-400 text-white py-3 rounded-xl font-semibold hover:from-purple-600 hover:to-orange-500 transition transform hover:scale-105">
                     Sign In
@@ -93,33 +93,33 @@
             <form id="signup-form" class="space-y-4 hidden">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="Jane">
+                        <label for="signup-first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input id="signup-first-name" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="Jane">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="Doe">
+                        <label for="signup-last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input id="signup-last-name" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="Doe">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="you@example.com">
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input id="signup-email" type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="you@example.com">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="••••••••">
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input id="signup-password" type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="••••••••">
                 </div>
                 <!-- Basic Health Risk Assessment -->
                 <div class="mt-4 border-t pt-4">
                     <h3 class="text-lg font-semibold mb-2">Quick Health Info</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Age</label>
-                            <input type="number" min="1" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="e.g. 30">
+                            <label for="health-age" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                            <input id="health-age" type="number" min="1" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="e.g. 30">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
-                            <select class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all">
+                            <label for="health-gender" class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                            <select id="health-gender" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all">
                                 <option value="" disabled selected>Select</option>
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>
@@ -128,12 +128,12 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Height (cm)</label>
-                            <input type="number" min="1" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="e.g. 170">
+                            <label for="health-height" class="block text-sm font-medium text-gray-700 mb-1">Height (cm)</label>
+                            <input id="health-height" type="number" min="1" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all" placeholder="e.g. 170">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
-                            <input type="number" min="1" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="e.g. 65">
+                            <label for="health-weight" class="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+                            <input id="health-weight" type="number" min="1" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all" placeholder="e.g. 65">
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
         // Handle login submission
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const emailInput = loginForm.querySelector('input[type="email"]');
+            const emailInput = document.getElementById('login-email');
             const emailVal = emailInput.value.trim();
             let userName = 'User';
             if (emailVal.includes('@')) {
@@ -183,7 +183,7 @@
         // Handle sign up submission
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const firstName = signupForm.querySelector('input[placeholder="Jane"]').value.trim();
+            const firstName = document.getElementById('signup-first-name').value.trim();
             if (firstName) {
                 localStorage.setItem('ahelpUserName', firstName);
             }
