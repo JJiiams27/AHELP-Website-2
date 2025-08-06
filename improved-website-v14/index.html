@@ -63,35 +63,7 @@
 </head>
 <body class="text-gray-700 antialiased">
     <!-- Navigation Bar -->
-    <nav class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
-            <div class="flex items-center space-x-3">
-                <img src="Help (6).png" alt="AHELP logo" class="h-28 w-auto">
-                
-            </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="home.html" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Home</a>
-                <a href="#features" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Features</a>
-                <a href="health-assessment.html" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Health Assessment</a>
-                <a href="#progress" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Activity</a>
-                <a href="login.html" class="text-1xl font-extrabold bg-gradient-to-r from-purple-400 to-orange-300 bg-clip-text text-transparent">Login</a>
-            </div>
-            <!-- Mobile menu button -->
-            <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-        <!-- Mobile menu (hidden by default) -->
-        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-            <a href="home.html" class="block py-2 hover:text-purple-600">Home</a>
-            <a href="#features" class="block py-2 hover:text-purple-600">Features</a>
-            <a href="health-assessment.html" class="block py-2 hover:text-purple-600">Health Assessment</a>
-            <a href="#progress" class="block py-2 hover:text-purple-600">Activity</a>
-            <a href="login.html" class="block py-2 hover:text-purple-600">Login</a>
-        </div>
-    </nav>
+    {% include "partials/nav.html" %}
 
     <!-- Hero Section -->
     <section id="home" class="pt-24 lg:pt-32 pb-16 bg-gradient-to-br from-purple-50 via-white to-orange-50">
@@ -198,38 +170,14 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-8">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-            <div>
-                <h3 class="text-xl font-bold mb-3">AHELP</h3>
-                <p class="text-sm">Arkansas Healthy Employee Lifestyle Program<br>Empowering wellbeing through personalised plans, community and rewards.</p>
-            </div>
-            <div>
-                <h3 class="text-xl font-bold mb-3">Quick Links</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#home" class="hover:underline">Home</a></li>
-                    <li><a href="#features" class="hover:underline">Features</a></li>
-                    <li><a href="health-assessment.html" class="hover:underline">Health Assessment</a></li>
-                    <li><a href="#progress" class="hover:underline">Activity</a></li>
-                    <li><a href="login.html" class="hover:underline">Login</a></li>
-    <!-- Admin login quick link -->
-    <li><a href="admin-login.html" class="hover:underline">Admin Login</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-bold mb-3">Connect</h3>
-                <p class="text-sm">Have questions? Reach out to us at <a href="mailto:info@ahelp.com" class="text-purple-400 hover:underline">info@ahelp.com</a>.</p>
-                <p class="text-sm mt-4">© 2025 AHELP. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    {% include "partials/footer.html" %}
 
     <!-- Scripts -->
     <script>
         // Mobile navigation toggle
-        const menuBtn = document.getElementById('menu-btn');
+        const mobileBtn = document.getElementById('mobile-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
+        mobileBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
