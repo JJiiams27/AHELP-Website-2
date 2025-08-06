@@ -168,25 +168,30 @@
         });
 
         // Handle login submission
-        loginForm.addEventListener('submit', (e) => {
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const emailInput = loginForm.querySelector('input[type="email"]');
-            const emailVal = emailInput.value.trim();
-            let userName = 'User';
-            if (emailVal.includes('@')) {
-                userName = emailVal.split('@')[0];
+            const email = loginForm.querySelector('input[type="email"]').value.trim();
+            const password = loginForm.querySelector('input[type="password"]').value;
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                if (!response.ok) {
+                    throw new Error('Invalid credentials');
+                }
+                const data = await response.json();
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            } catch (err) {
+                alert(err.message);
             }
-            localStorage.setItem('ahelpUserName', userName);
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
         });
         // Handle sign up submission
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const firstName = signupForm.querySelector('input[placeholder="Jane"]').value.trim();
-            if (firstName) {
-                localStorage.setItem('ahelpUserName', firstName);
-            }
             window.location.href = 'dashboard.html';
         });
     </script>
