@@ -6,13 +6,24 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const publicDir = path.join(__dirname, '..', 'improved-website-v14');
+const publicDir = path.join(__dirname, '..', 'dist');
+const secureFlag = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+const sameSite = 'Strict';
 
 const users = new Map(); // email -> { passwordHash, firstName, lastName }
 const sessions = new Map(); // token -> email
 
 function hash(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
+}
+
+function getCookies(req) {
+  return Object.fromEntries(
+    (req.headers.cookie || '')
+      .split(';')
+      .map(c => c.trim().split('='))
+      .filter(([k]) => k)
+  );
 }
 
 function parseBody(req) {
@@ -36,6 +47,12 @@ function parseBody(req) {
 const server = http.createServer(async (req, res) => {
   if (req.method === 'POST' && req.url === '/api/register') {
     try {
+      const cookies = getCookies(req);
+      if (req.headers['x-csrf-token'] !== cookies.csrfToken) {
+        res.writeHead(403, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'CSRF token mismatch' }));
+      }
+
       const { firstName = '', lastName = '', email = '', password = '' } = await parseBody(req);
       if (!email || !password) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -50,7 +67,7 @@ const server = http.createServer(async (req, res) => {
       sessions.set(token, email);
       res.writeHead(200, {
         'Content-Type': 'application/json',
-        'Set-Cookie': `session=${token}; HttpOnly; Path=/; SameSite=Strict`
+        'Set-Cookie': `session=${token}; HttpOnly${secureFlag}; Path=/; SameSite=${sameSite}`
       });
       res.end(JSON.stringify({ token }));
     } catch (e) {
@@ -59,6 +76,12 @@ const server = http.createServer(async (req, res) => {
     }
   } else if (req.method === 'POST' && req.url === '/api/login') {
     try {
+      const cookies = getCookies(req);
+      if (req.headers['x-csrf-token'] !== cookies.csrfToken) {
+        res.writeHead(403, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'CSRF token mismatch' }));
+      }
+
       const { email = '', password = '' } = await parseBody(req);
       const user = users.get(email);
       if (!user || user.passwordHash !== hash(password)) {
@@ -69,7 +92,7 @@ const server = http.createServer(async (req, res) => {
       sessions.set(token, email);
       res.writeHead(200, {
         'Content-Type': 'application/json',
-        'Set-Cookie': `session=${token}; HttpOnly; Path=/; SameSite=Strict`
+        'Set-Cookie': `session=${token}; HttpOnly${secureFlag}; Path=/; SameSite=${sameSite}`
       });
       res.end(JSON.stringify({ token }));
     } catch (e) {
@@ -79,12 +102,24 @@ const server = http.createServer(async (req, res) => {
   } else if (req.method === 'GET') {
     const safePath = req.url === '/' ? '/index.html' : req.url;
     const filePath = path.join(publicDir, safePath);
+    const cookies = getCookies(req);
+    const csrfCookie = cookies.csrfToken;
+    const setCookie = csrfCookie
+      ? undefined
+      : `csrfToken=${crypto.randomUUID()}; HttpOnly${secureFlag}; Path=/; SameSite=${sameSite}`;
     fs.readFile(filePath, (err, data) => {
       if (err) {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Not found');
+        const notFoundPath = path.join(publicDir, '404.html');
+        fs.readFile(notFoundPath, (nfErr, nfData) => {
+          const headers = { 'Content-Type': 'text/html' };
+          if (setCookie) headers['Set-Cookie'] = setCookie;
+          res.writeHead(404, headers);
+          res.end(nfErr ? 'Not found' : nfData);
+        });
       } else {
-        res.writeHead(200);
+        const headers = {};
+        if (setCookie) headers['Set-Cookie'] = setCookie;
+        res.writeHead(200, headers);
         res.end(data);
       }
     });

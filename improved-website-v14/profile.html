@@ -114,13 +114,8 @@
     <!-- Footer -->
     {% include "partials/footer.html" %}
 
-    <!-- Scripts for mobile menu and profile handling -->
+    <!-- Script for profile handling -->
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
         // Populate profile info from localStorage if available
         document.addEventListener('DOMContentLoaded', () => {
             const storedName = localStorage.getItem('userName');
