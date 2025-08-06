@@ -146,15 +146,10 @@
     <!-- Footer -->
     {% include "partials/footer.html" %}
 
+    <script src="js/mobile-nav.js"></script>
+
     <!-- Scripts -->
     <script>
-        // Mobile navigation toggle
-        const mobileBtn = document.getElementById('mobile-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
         // BMI Calculator
         const bmiBtn = document.getElementById('bmi-calc');
         const bmiOutput = document.getElementById('bmi-output');

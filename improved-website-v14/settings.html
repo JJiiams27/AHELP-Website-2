@@ -78,12 +78,10 @@
     <!-- Footer -->
     {% include "partials/footer.html" %}
 
-    <!-- Mobile menu & settings script -->
-    <script>
-        document.getElementById('mobile-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+    <script src="js/mobile-nav.js"></script>
 
+    <!-- Settings script -->
+    <script>
         // Load settings from localStorage
         document.addEventListener('DOMContentLoaded', () => {
             const notificationsEnabled = localStorage.getItem('settingsNotifications') === 'true';
