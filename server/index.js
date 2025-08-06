@@ -77,8 +77,21 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify({ error: 'Server error' }));
     }
   } else if (req.method === 'GET') {
-    const safePath = req.url === '/' ? '/index.html' : req.url;
+    let requestedPath = req.url.split('?')[0];
+    requestedPath = requestedPath === '/' ? '/index.html' : requestedPath;
+
+    if (requestedPath.includes('..')) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      return res.end('Not found');
+    }
+
+    const safePath = path.normalize(requestedPath).replace(/^\/+/g, '');
     const filePath = path.join(publicDir, safePath);
+    if (!filePath.startsWith(publicDir)) {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      return res.end('Not found');
+    }
+
     fs.readFile(filePath, (err, data) => {
       if (err) {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -94,6 +107,11 @@ const server = http.createServer(async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+export default server;

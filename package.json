@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node build.js",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "test": "NODE_ENV=test node --test"
   }
 }
